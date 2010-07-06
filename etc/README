@@ -1,0 +1,57 @@
+TWM Email Framework for PHP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The files in this archive are Copyright (C) 2003 Three Wise Men Software
+Development and Consulting.
+
+This software is freely available under the terms of the Apache License 2.0 -
+please see the LICENSE file for details.
+
+
+System Requirements
+-------------------
+
+TWM Email Framework for PHP requires a PHP enabled web server, with PHP
+version 4.1.0 or higher.
+
+
+Quick-Start
+-----------
+
+See docs/manual.txt for full instructions.
+
+Copy all files in web/ to a folder on your web site.
+
+
+Acknowledgements
+----------------
+
+We would like to extend special thanks to the following people for their valued
+contributions and feedback that lead to new features:
+
+  Craig Savolainen
+  Stephen Smith
+
+
+Change Log
+~~~~~~~~~~
+
+Date        Rev     Notes
+----------- ------- -------------------------------------------------------
+2005-11-14	2.0.1   - minor maintenance release, nothing functional changed
+
+2005-08-09  2.0.0   - support for templated subject lines
+
+2004-06-13  1.0.4   - bug fixes in short email pattern, scalar template
+                      assignment
+
+2004-06-12  1.0.3   - enhancements to email stripping routine (long form vs.
+                      short form)
+
+2004-06-07  1.0.2   - separated TWM_isValidEmail() from the class so it can
+                      be more easily used externally
+
+2004-06-04  1.0.1   - improvements to email regex
+
+2004-06-04  1.0.0   - initial release
+

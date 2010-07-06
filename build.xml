@@ -1,0 +1,67 @@
+<project name="TWM-Email-PHP" default="compile" basedir=".">
+
+  <property environment="env"/>
+
+  <!-- App settings -->
+  <property name="app.name"		  value="TWM-Email-PHP"/>
+  <property name="app.version"	value="1_0_4"/>
+
+  <!-- Property defaults -->
+  <property file="build.properties"/>
+  <property file="${user.home}/build.properties"/>
+
+  <!-- PHPDocumentor -->
+  <property name="php.home"     value="${env.PHP_HOME}"/>
+  <property name="phpdoc.home"  value="${env.PHPDOC_HOME}"/>
+
+  <!-- Build locations -->
+  <property name="build.home"		value="build"/>
+  <property name="dist.home"		value="dist"/>
+
+
+
+  <!-- All target -->
+  <target name="all" depends="clean,compile" description="Clean build and dist, then compile"/>
+
+  <!-- Clean target -->
+  <target name="clean" description="Delete old build and dist directories">
+    <delete dir="${build.home}"/>
+    <delete dir="${dist.home}"/>
+  </target>
+
+  <!-- Compile target -->
+  <target name="compile" depends="prepare" description="Compile Java sources">
+    <mkdir dir="${build.home}"/>
+
+      <copy  todir="${build.home}/web">
+        <fileset dir="web" includes="**/*"/>
+      </copy>
+
+    <copy  todir="${build.home}/docs">
+      <fileset dir="docs"/>
+    </copy>
+
+    <copy todir="${build.home}">
+      <fileset dir="etc" includes="README"/>
+      <fileset dir="etc" includes="LICENSE"/>
+    </copy>
+
+    <exec executable="${php.home}/cli/php.exe">
+      <arg line="${phpdoc.home}\\phpdoc -s on -d ${basedir}\\web -t ${build.home}\\docs\\api -dn ${app.name} -dc Uncategorized"/>
+    </exec>
+  </target>
+
+  <!-- Dist target -->
+  <target name="dist" depends="clean,compile" description="Create binary distribution">
+    <mkdir dir="${dist.home}"/>
+    <zip destfile="${dist.home}/${app.name}-${app.version}.zip" basedir="${build.home}"/>
+  </target>
+
+  <!-- Prepare target -->
+  <target name="prepare">
+    <mkdir  dir="${build.home}"/>
+    <mkdir  dir="${build.home}/web"/>
+    <mkdir  dir="${build.home}/docs"/>
+  </target>
+
+</project>

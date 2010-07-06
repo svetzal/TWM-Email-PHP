@@ -1,0 +1,23 @@
+TWM Email Framework for PHP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+General Usage Information
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This class provides a simplified interface to sending plain-text
+or HTML emails.
+ 
+Here is the primary usage scenario:
+ 
+  $cfg = new TWM_Email_Config();
+  $cfg->smtp_host = "mail.threewisemen.ca";
+  $cfg->template_dir = "/var/www/html/templates/";
+ 
+  $email = new TWM_Email($cfg);
+  $email->setFormat(TWM_MAILFORMAT_HTML);
+  $email->loadTemplate("sample_email_template.html");  //body template
+  $email->loadTemplate("sample_subject_template.subject", false); //subject template
+  $email->addTo("Steven Vetzal <steve@threewisemen.ca>");
+  $email->addTo("TWM Sales <sales@threewisemen.ca>");
+  $email->send(array( "firstname" => "Steven", "lastname" => "Vetzal", "message" => "Hello!" ));
+
